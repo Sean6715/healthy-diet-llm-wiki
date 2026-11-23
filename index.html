@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>健康飲食入門教學簡報（基於 LLM Wiki）</title>
+  <style>
+    :root {
+      --bg: #f4f7f5;
+      --card: #ffffff;
+      --primary: #1f6f50;
+      --primary-light: #e6f2ed;
+      --text: #1e293b;
+      --muted: #526071;
+      --accent: #d97706;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 { font-size: 1.05rem; font-weight: 600; }
+    .progress { font-size: 0.9rem; opacity: 0.9; }
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .slide {
+      display: none;
+      background: var(--card);
+      width: 100%;
+      max-width: 900px;
+      min-height: 480px;
+      border-radius: 16px;
+      padding: 40px 48px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border-top: 6px solid var(--primary);
+    }
+    .slide.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h2 { font-size: 1.9rem; margin-bottom: 18px; color: var(--primary); }
+    p.lead { font-size: 1.12rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .box p, .box li { font-size: 0.96rem; color: var(--muted); line-height: 1.6; }
+    ul.clean { padding-left: 20px; }
+    ul.clean li { margin-bottom: 10px; font-size: 1.05rem; line-height: 1.65; }
+    .source-note {
+      margin-top: 22px;
+      font-size: 0.85rem;
+      color: #64748b;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 10px;
+    }
+    footer {
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .hint { font-size: 0.88rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>健康飲食入門教學簡報</h1>
+    <div class="progress" id="progress">第 1 / 6 頁</div>
+  </header>
+
+  <main>
+    <!-- 第 1 頁：封面 -->
+    <section class="slide active">
+      <span class="tag">新手入門教學｜LLM Wiki 知識庫生成</span>
+      <h2>健康飲食是什麼？</h2>
+      <p class="lead">
+        健康飲食不是極端挨餓或完全禁止某種食物，而是讓身體每天獲得足夠的能量與營養素，維持正常運作與長期健康。
+      </p>
+      <div class="grid-3">
+        <div class="box">
+          <h3>巨量營養素</h3>
+          <p>碳水化合物、蛋白質、脂肪，提供能量與身體結構原料。</p>
+        </div>
+        <div class="box">
+          <h3>微量營養素</h3>
+          <p>維生素與礦物質，協助調節生理機能。</p>
+        </div>
+        <div class="box">
+          <h3>水分與均衡</h3>
+          <p>搭配充足水分與各類食物，避免單一營養缺乏。</p>
+        </div>
+      </div>
+      <div class="source-note">資料依據：LLM Wiki（MedlinePlus / 國健署 / 哈佛餐盤 / WHO / 食藥署）</div>
+    </section>
+
+    <!-- 第 2 頁：三大營養素 -->
+    <section class="slide">
+      <span class="tag">核心概念 01</span>
+      <h2>認識三大營養素</h2>
+      <p class="lead">了解三大營養素的功能與挑選原則，比單看熱量數字更能幫助日常做選擇。</p>
+      <div class="grid-3">
+        <div class="box">
+          <h3>碳水化合物</h3>
+          <p>身體主要能量來源。優先選全穀雜糧（如糙米、燕麥、全麥），纖維多、對血糖衝擊較小。</p>
+        </div>
+        <div class="box">
+          <h3>蛋白質</h3>
+          <p>由胺基酸組成，負責修復組織、製造酵素與荷爾蒙、支援免疫。多選豆、魚、蛋、肉與堅果。</p>
+        </div>
+        <div class="box">
+          <h3>脂肪</h3>
+          <p>高能量來源，協助吸收脂溶性維生素。優先選不飽和脂肪（橄欖油、堅果、魚類），少飽和與反式脂肪。</p>
+        </div>
+      </div>
+      <div class="source-note">資料依據：sources/source_02.md、sources/source_05.md</div>
+    </section>
+
+    <!-- 第 3 頁：餐盤比例法 -->
+    <section class="slide">
+      <span class="tag">實作方法 02</span>
+      <h2>新手配餐法：餐盤比例</h2>
+      <p class="lead">不用拿磅秤也能快速估算一餐的搭配比例：</p>
+      <div class="grid-3">
+        <div class="box">
+          <h3>1/2 蔬菜與水果</h3>
+          <p>種類越多越好，提供膳食纖維與維生素。（注意：馬鈴薯在餐盤分類中不算蔬菜）</p>
+        </div>
+        <div class="box">
+          <h3>1/4 全穀雜糧</h3>
+          <p>選擇全穀雜糧類，提供較穩定的能量。</p>
+        </div>
+        <div class="box">
+          <h3>1/4 健康蛋白質</h3>
+          <p>選擇魚、豆類、禽肉等，減少紅肉與加工肉品（如香腸、培根）。</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:18px; font-size:1rem;">
+        飲品建議以<strong>水、茶或咖啡</strong>為主，減少含糖飲料，並搭配健康植物油烹調。
+      </p>
+      <div class="source-note">資料依據：sources/source_02.md</div>
+    </section>
+
+    <!-- 第 4 頁：我的餐盤六句口訣 -->
+    <section class="slide">
+      <span class="tag">實作方法 03</span>
+      <h2>「我的餐盤」六句口訣</h2>
+      <p class="lead">利用隨身手勢與日常口訣，快速檢視每天是否吃到六大類食物：</p>
+      <ul class="clean">
+        <li><strong>每天早晚一杯奶</strong></li>
+        <li><strong>每餐水果拳頭大</strong></li>
+        <li><strong>菜比水果多一點</strong></li>
+        <li><strong>飯跟蔬菜一樣多</strong></li>
+        <li><strong>豆魚蛋肉一掌心</strong></li>
+        <li><strong>堅果種子一茶匙</strong></li>
+      </ul>
+      <div class="source-note">資料依據：sources/source_01.md（衛生福利部國民健康署）</div>
+    </section>
+
+    <!-- 第 5 頁：WHO 攝取上限與營養標示 -->
+    <section class="slide">
+      <span class="tag">避雷指南 04</span>
+      <h2>看懂攝取上限與營養標示</h2>
+      <div class="grid-3">
+        <div class="box">
+          <h3>WHO 每日建議上限</h3>
+          <ul class="clean" style="font-size:0.95rem;">
+            <li>游離糖：低於總熱量 10%（＜5% 更佳）</li>
+            <li>飽和脂肪：＜10%；反式脂肪：＜1%</li>
+            <li>食鹽：＜5g（鈉約 ＜2000mg）</li>
+          </ul>
+        </div>
+        <div class="box" style="grid-column: span 2;">
+          <h3>看營養標示三步驟</h3>
+          <ul class="clean" style="font-size:0.95rem;">
+            <li><strong>第一步</strong>：先看「每一份量」與「本包裝含幾份」，算清楚整包吃下肚的實際份數。</li>
+            <li><strong>第二步</strong>：檢視熱量、蛋白質、脂肪、碳水化合物（含糖）與鈉含量。</li>
+            <li><strong>第三步</strong>：看「內容物」成分表（依含量多寡排序），留意糖與油的來源。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="source-note">資料依據：sources/source_03.md、sources/source_04.md</div>
+    </section>
+
+    <!-- 第 6 頁：重點回顧 -->
+    <section class="slide">
+      <span class="tag">總結回顧</span>
+      <h2>給新手的三個 takeaway</h2>
+      <ul class="clean">
+        <li><strong>先看比例與營養素，再看熱量</strong>：均衡攝取全穀雜糧、優質蛋白質、蔬果與好油。</li>
+        <li><strong>善用工具簡化判斷</strong>：餐盤比例與「我的餐盤」口訣，外食也能快速抓重點。</li>
+        <li><strong>買包裝先看「幾份」與「糖、鈉」</strong>：不被包裝表面標語誤導，學會看標示與成分表。</li>
+      </ul>
+      <div class="source-note">完整知識庫請見 Repository 中的 README.md 與 sources/ 資料夾</div>
+    </section>
+  </main>
+
+  <footer>
+    <button id="prevBtn" onclick="changeSlide(-1)">上一頁</button>
+    <span class="hint">可使用 ← / → 方向鍵或空白鍵換頁</span>
+    <button id="nextBtn" onclick="changeSlide(1)">下一頁</button>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progress = document.getElementById('progress');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    function render() {
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      progress.textContent = `第 ${current + 1} / ${slides.length} 頁`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+    }
+
+    function changeSlide(step) {
+      const next = current + step;
+      if (next >= 0 && next < slides.length) {
+        current = next;
+        render();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        changeSlide(-1);
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
